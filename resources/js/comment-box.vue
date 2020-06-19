@@ -1,5 +1,5 @@
 <template>
-  <div class="alert alert-success">
+  <div class="alert alert-danger">
     {{ message }}
   </div>
 </template>
@@ -10,7 +10,7 @@
     props: { },
     data() {
       return {
-        message: 'It\'s Working, it\'s really working.'
+        message: 'comment box'
       }
     },
   }

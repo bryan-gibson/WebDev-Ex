@@ -17,17 +17,19 @@
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand" href="/edit">Edit</a>
     </nav>
 
     <main role="main" class="container">
       <div class="jumbotron">
         <h1>Comment System</h1>
-        <p class="lead">Feel free to edit anything within the project.</p>
+        <p class="lead">Feel free to enter a comment below.</p>
       </div>
 
       {{-- @see /resources/js/app.js if you want to use Vue --}}
       <div class="vue">
         <hello-example></hello-example>
+        <comment-box></comment-box>
       </div>
     </main>
 
