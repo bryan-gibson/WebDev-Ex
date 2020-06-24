@@ -10,7 +10,7 @@
     props: { },
     data() {
       return {
-        message: 'Hello Vue!'
+        message: 'It\'s Working, it\'s really working.'
       }
     },
   }
