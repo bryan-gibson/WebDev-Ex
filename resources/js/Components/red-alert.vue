@@ -10,7 +10,7 @@
     props: { },
     data() {
       return {
-        message: 'comment box'
+        message: 'Bad Alert'
       }
     },
   }

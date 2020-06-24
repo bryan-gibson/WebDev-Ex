@@ -15,10 +15,10 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="/">Home</a>
       <a class="navbar-brand" href="/edit">Edit</a>
-    </nav>
+  </nav> -->
 
     <main role="main" class="container">
       <div class="jumbotron">
@@ -28,8 +28,11 @@
 
       {{-- @see /resources/js/app.js if you want to use Vue --}}
       <div class="vue">
+        <App></App>
+        <!--
+        <comment-form></comment-form>
         <hello-example></hello-example>
-        <comment-box></comment-box>
+        <red-alert></red-alert> -->
       </div>
     </main>
 
