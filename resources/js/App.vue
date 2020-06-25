@@ -14,18 +14,19 @@
             <button style= "margin:10px;" @click="create">Generate Comment</button>
             <form @submit="post">
                         <strong>Name:</strong>
-                        <input type="text" class="form-control" name="name" v-model="name">
+                        <input type="text" class="form-control" name="name" value="name" v-model="name">
                         <strong>Text:</strong>
-                        <textarea class="form-control" name="text" v-model="text"></textarea>
+                        <textarea class="form-control" name="text" value="text" v-model="text"></textarea>
 
-                        <button class="btn btn-success" onclick="add(document.getElementById('name').value,document.getElementById('text').value">Submit</button>
+                        <button class="btn btn-success" onclick="Comment({}, {document.getElementById('name').value}, {document.getElementById('text').value},
+                        {})">Submit</button>
             </form>
-            <form method="post">
+            <!-- <form method="post">
                     <input type="text" name="name" />
                     <input type="text" name="text" />
 
                     <b-button type="submit" variant="primary" @click="post">Submit</b-button>
-            </form>
+            </form> -->
     </div>
 </template>
 
@@ -61,12 +62,6 @@
         data.forEach(comment => this.comments.push(new Comment(comment)));
         this.mute = false;
       },
-      /*async update(id) {
-        this.mute = true;
-        await window.axios.put(`/api/comments/${id}`);
-        this.cruds.find(crud => crud.id === id).color = color;
-        this.mute = false;
-    },*/
       async del(id) {
         this.mute = true;
         await window.axios.delete(`/api/comments/${id}`);

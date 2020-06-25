@@ -10,13 +10,7 @@ import HelloExample from './Components/hello-example.vue'
 import RedAlert from './Components/red-alert.vue'
 import CommentForm from './Components/comment-form.vue'
 import App from './App.vue'
-import CommentComponent from './Components/CommentComponent.vue'
 
-function Comment({ id, text, name}) {
-  this.id = id;
-  this.text = text;
-  this.name = name;
-}
 
 // register components
 Vue.use(BootstrapVue)
@@ -25,7 +19,6 @@ Vue.component('hello-example', HelloExample)
 Vue.component('red-alert', RedAlert)
 Vue.component('comment-form', CommentForm)
 Vue.component('App', App)
-Vue.component('CommentComponent', CommentComponent)
 
 
 // mount on class="vue"
@@ -46,12 +39,6 @@ const app = new Vue({
   },
   render: h => h(App)
 });
-
-//let app = new Vue({
-//    el: '#app',
-//    router: new VueRouter(routes)
-//});
-
 
 // end mount
 
