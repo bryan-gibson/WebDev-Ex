@@ -44,7 +44,6 @@
   export default {
     data() {
       return {
-          // 1 add vmodels
           // success flag?
           name: '',
           text: '',
@@ -59,11 +58,8 @@
         this.comments.push(new Comment(data));
       },
       async post() {
-        // get form inputs from v-models
-        //bootstrap stuff
-
         console.log(name);
-        const { data } = await window.axios.post('/api/comments', { name: this.name, text: this.text}); // need post data
+        const { data } = await window.axios.post('/api/comments', { name: this.name, text: this.text});
         this.mute = true;
         this.comments.push(new Comment(data));
         this.name = '';
