@@ -6,11 +6,11 @@
 
 <script>
   export default {
-    name: 'Example',
-    props: { },
+    name: 'Error',
+    props: ['errors'],
     data() {
       return {
-        message: 'Bad Alert'
+        message: error in errors
       }
     },
   }

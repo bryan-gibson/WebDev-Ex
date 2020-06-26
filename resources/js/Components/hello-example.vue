@@ -10,7 +10,7 @@
     props: { },
     data() {
       return {
-        message: 'It\'s Working, it\'s really working.'
+        message: 'Comment successfully posted.'
       }
     },
   }

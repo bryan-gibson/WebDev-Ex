@@ -24,8 +24,9 @@ class CommentController extends Controller
         return response($comment->jsonSerialize(), Response::HTTP_CREATED);
     }
 
-    public function post(Request $request)
+    public function store(Request $request)
     {
+        //dd($request->all());
         $comment = new Comment();
         $comment->name = $request->name;
         $comment->text = $request->text;
@@ -33,9 +34,6 @@ class CommentController extends Controller
 
         return response($comment->jsonSerialize(), Response::HTTP_CREATED);
         //dd($request->all());
-        //$comment = $request->$comment;
-
-        //return response($comment->jsonSerialize(), Response::HTTP_CREATED);
     }
 
     /*public function update(Request $request, $id)

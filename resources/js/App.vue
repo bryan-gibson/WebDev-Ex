@@ -1,32 +1,32 @@
 <template>
     <div id="app">
-        <div class="heading">
-        </div>
+        <div class="heading"></div>
         <comment-component
                 v-for="comment in comments"
                 v-bind="comment"
                 :key="comment.id"
-                @update="update"
+
                 @delete="del"
         ></comment-component>
 
-<!-- DON'T TOUCH STUFF ABOVE -->
-            <button style= "margin:10px;" @click="create">Generate Comment</button>
-            <form @submit="post">
-                        <strong>Name:</strong>
-                        <input type="text" class="form-control" name="name" value="name" v-model="name">
-                        <strong>Text:</strong>
-                        <textarea class="form-control" name="text" value="text" v-model="text"></textarea>
+        <div v-if="mute">Processing</div>
 
-                        <button class="btn btn-success" onclick="Comment({}, {document.getElementById('name').value}, {document.getElementById('text').value},
-                        {})">Submit</button>
+            <!-- GENERATE BUTTON: <button style= "margin:10px;" @click="create">Generate Comment</button> -->
+            <form @submit.prevent="checkForm" v-on:submit.prevent="post">
+                <p class="err-msg" v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                        <!-- <error-alert></error-alert> -->
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                </p>
+                <strong>Name:</strong>
+                <input type="text" class="form-control" name="name" value="name" v-model="name">
+                <strong>Comment:</strong>
+                <textarea class="form-control" name="text" value="text" v-model="text" maxlength="200"></textarea>
+
+                <button class="btn btn-success" style="margin:10px;">Submit</button>
             </form>
-            <!-- <form method="post">
-                    <input type="text" name="name" />
-                    <input type="text" name="text" />
-
-                    <b-button type="submit" variant="primary" @click="post">Submit</b-button>
-            </form> -->
     </div>
 </template>
 
@@ -39,11 +39,17 @@
   }
 
   import CommentComponent from './Components/Comment.vue';
+  import ErrorComponent from './Components/error-alert.vue';
 
   export default {
     data() {
       return {
+          // 1 add vmodels
+          // success flag?
+          name: '',
+          text: '',
         comments: [],
+        errors: [],
         mute: false
       }
     },
@@ -53,8 +59,17 @@
         this.comments.push(new Comment(data));
       },
       async post() {
-        const { data } = await window.axios.get('/api/comments/post');
+        // get form inputs from v-models
+        //bootstrap stuff
+
+        console.log(name);
+        const { data } = await window.axios.post('/api/comments', { name: this.name, text: this.text}); // need post data
+        this.mute = true;
         this.comments.push(new Comment(data));
+        this.name = '';
+        this.text = '';
+        this.errors = [];
+        this.mute = false;
       },
       async read() {
         this.mute = true;
@@ -68,13 +83,29 @@
         let index = this.comments.findIndex(comment => comment.id === id);
         this.comments.splice(index, 1);
         this.mute = false;
-      }
+      },
+      checkForm: function (e) {
+          if (this.name && this.text) {
+            return true;
+          }
+
+          this.errors = [];
+
+          if (!this.name) {
+            this.errors.push('Name required.');
+          }
+          if (!this.text) {
+            this.errors.push('Text field cannot be blank.');
+          }
+
+          e.preventDefault();
+      },
     },
-    watch: {
+    /*watch: {
       mute(val) {
         document.getElementById('mute').className = val ? "on" : "";
       }
-    },
+  },*/
     components: {
       CommentComponent
     },

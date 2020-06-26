@@ -4,19 +4,19 @@ require('./bootstrap');
 // @see https://laravel-mix.com/docs/5.0/mixjs
 //window.Vue = require('vue');
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+//import VueRouter from 'vue-router';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import HelloExample from './Components/hello-example.vue'
-import RedAlert from './Components/red-alert.vue'
+import ErrorAlert from './Components/error-alert.vue'
 import CommentForm from './Components/comment-form.vue'
 import App from './App.vue'
 
 
 // register components
 Vue.use(BootstrapVue)
-Vue.use(VueRouter)
+//Vue.use(VueRouter)
 Vue.component('hello-example', HelloExample)
-Vue.component('red-alert', RedAlert)
+Vue.component('error-alert', ErrorAlert)
 Vue.component('comment-form', CommentForm)
 Vue.component('App', App)
 
@@ -33,7 +33,7 @@ if (vueClasses.length) {
 
 const app = new Vue({
   el: '#app',
-  router: Router,
+  //router: Router,
   components: {
     App
   },
