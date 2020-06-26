@@ -9,13 +9,11 @@
                 @delete="del"
         ></comment-component>
 
-        <div v-if="mute">Processing</div>
 
             <!-- GENERATE BUTTON: <button style= "margin:10px;" @click="create">Generate Comment</button> -->
-            <form @submit.prevent="checkForm" v-on:submit.prevent="post">
+            <form @submit.prevent="post">
                 <p class="err-msg" v-if="errors.length">
                     <b>Please correct the following error(s):</b>
-                        <!-- <error-alert></error-alert> -->
                     <ul>
                         <li v-for="error in errors">{{ error }}</li>
                     </ul>
@@ -39,7 +37,6 @@
   }
 
   import CommentComponent from './Components/Comment.vue';
-  import ErrorComponent from './Components/error-alert.vue';
 
   export default {
     data() {
@@ -58,13 +55,23 @@
         this.comments.push(new Comment(data));
       },
       async post() {
-        console.log(name);
+         // valication
+        this.errors = [];
+        this.checkForm();
+
+        if (this.errors.length > 0) {
+            return;
+        }
+        // end validation
+
+        // submit data
+
         const { data } = await window.axios.post('/api/comments', { name: this.name, text: this.text});
         this.mute = true;
         this.comments.push(new Comment(data));
         this.name = '';
         this.text = '';
-        this.errors = [];
+
         this.mute = false;
       },
       async read() {
@@ -94,7 +101,7 @@
             this.errors.push('Text field cannot be blank.');
           }
 
-          e.preventDefault();
+          // e.preventDefault();
       },
     },
     /*watch: {
