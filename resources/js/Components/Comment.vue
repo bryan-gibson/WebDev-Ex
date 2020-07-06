@@ -1,11 +1,11 @@
 <template>
-    <div class="comment">
+    <div class="comment-box">
         <div class="block">
-            <h5 class="inline">{{ name | properCase }} </h5>
-            <p class="inline-date"><small>{{ date }}</small></p>
-            <p>{{ text }}</p>
-            <button class="btn btn-danger" style= "margin:5px;" @click="del">Delete</button>
-            <hr />
+            <h5 class="comment-name">{{ name | properCase }} </h5>
+            <p class="comment-date"><small>{{ date }}</small></p>
+            <hr style="margin-top: 0;">
+            <p class="comment-text">{{ text }}</p>
+            <button class="btn btn-danger" style="margin:5px" @click="del">Delete</button>
         </div>
     </div>
 </template>

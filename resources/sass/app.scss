@@ -5,15 +5,44 @@ body {
   padding-top: 70px;
 }
 
+.block {
+    border-radius: 15px;
+    background-color: #CBCBCB;
+    block-size: 150px;
+    position: relative;
+}
+
+.btn-danger {
+    position: absolute;
+    float: right;
+    right: 15px;
+    bottom: 5px;
+}
+
+.comment-name {
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 20px;
+  position: static;
+}
+
+.comment-date {
+  display: inline-block;
+  float: right;
+  padding-top: 4px;
+  padding-right: 50px;
+  position: static;
+}
+
+.comment-box {
+    padding-bottom: 20px;
+}
+
+.comment-text {
+    position: absolute;
+    padding-left: 30px;
+}
+
 .err-msg {
     color: red;
-}
-
-.inline {
-  display: inline-block;
-}
-
-.inline-date {
-  display: inline-block;
-  padding-right: 50px;
 }

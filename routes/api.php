@@ -20,5 +20,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/comments', 'CommentController', [
     //'except' => ['edit', 'show', 'store']
 ]);
-
-//Route::post('/', 'CommentController@post');

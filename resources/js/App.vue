@@ -5,26 +5,25 @@
                 v-for="comment in comments"
                 v-bind="comment"
                 :key="comment.id"
-
                 @delete="del"
         ></comment-component>
-
-
-            <!-- GENERATE BUTTON: <button style= "margin:10px;" @click="create">Generate Comment</button> -->
-            <form @submit.prevent="post">
-                <p class="err-msg" v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                        <li v-for="error in errors">{{ error }}</li>
-                    </ul>
-                </p>
-                <strong>Name:</strong>
-                <input type="text" class="form-control" name="name" value="name" v-model="name">
-                <strong>Comment:</strong>
-                <textarea class="form-control" name="text" value="text" v-model="text" maxlength="200"></textarea>
-
-                <button class="btn btn-success" style="margin:10px;">Submit</button>
-            </form>
+        <!-- GENERATE BUTTON <button style= "margin:10px;" @click="create">Generate Comment</button> -->
+        <form @submit.prevent="post">
+            <div class="alert alert-success" v-if="this.mute">
+                <strong>Success!</strong> Indicates a successful or positive action.
+            </div>
+            <p class="err-msg" v-if="errors.length">
+                <b>Please correct the following error(s):</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </p>
+            <strong>Name:</strong>
+            <input type="text" class="form-control" name="name" value="name" v-model="name">
+            <strong>Comment:</strong>
+            <textarea class="form-control" name="text" value="text" v-model="text" maxlength="250"></textarea>
+            <button class="btn btn-success" style="margin:10px;">Submit</button>
+        </form>
     </div>
 </template>
 
@@ -41,7 +40,6 @@
   export default {
     data() {
       return {
-          // success flag?
           name: '',
           text: '',
         comments: [],
@@ -55,7 +53,7 @@
         this.comments.push(new Comment(data));
       },
       async post() {
-         // valication
+         // validation
         this.errors = [];
         this.checkForm();
 
@@ -63,8 +61,6 @@
             return;
         }
         // end validation
-
-        // submit data
 
         const { data } = await window.axios.post('/api/comments', { name: this.name, text: this.text});
         this.mute = true;
@@ -104,11 +100,6 @@
           // e.preventDefault();
       },
     },
-    /*watch: {
-      mute(val) {
-        document.getElementById('mute').className = val ? "on" : "";
-      }
-  },*/
     components: {
       CommentComponent
     },

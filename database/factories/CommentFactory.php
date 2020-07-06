@@ -5,14 +5,10 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-/*$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Model::class, function (Faker $faker) {
     return [
+        'id' => $faker->
         'name' => $faker->name,
-        'text' => $faker->text
-    ];*/
-$factory->define(App\Comment::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->lexify('???? ?????'),
-        'text' => $faker->lexify('Hello, this is my comment that says: ???? ?????')
+        'text' => $faker->
     ];
 });
