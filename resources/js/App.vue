@@ -8,6 +8,7 @@
                 @delete="del"
         ></comment-component>
         <!-- GENERATE BUTTON <button style= "margin:10px;" @click="create">Generate Comment</button> -->
+        <!-- Useless Comment -->
         <form @submit.prevent="post">
             <div class="alert alert-success" v-if="this.mute">
                 <strong>Success!</strong> Indicates a successful or positive action.
